@@ -1,0 +1,7 @@
+Flask
+Flask-JWT-Extended
+Flask-Migrate
+Flask-Cors
+Flask-SQLAlchemy
+Flask-Bcrypt
+python-dotenv
