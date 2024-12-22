@@ -19,7 +19,7 @@ class Seller(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True)
     company_name = db.Column(db.String(100))
     description = db.Column(db.Text)
-    has_shop = db.Column(db.Boolean, default=False)  # New field to track if seller has created a shop
+    # Remove has_shop field since sellers can now have multiple shops
     shops = db.relationship('Shop', backref='seller', lazy=True)
 
 class Shop(db.Model):

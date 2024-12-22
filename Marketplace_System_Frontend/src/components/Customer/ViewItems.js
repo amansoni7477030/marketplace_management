@@ -8,16 +8,24 @@ const ViewItems = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const data = await customerService.getItems();
-            setItems(data);
-            const initialQuantities = {};
-            data.forEach(item => {
-                initialQuantities[item.id] = 1;
-            });
-            setQuantities(initialQuantities);
+            try {
+                const data = await customerService.getItems();
+                if (data) {
+                    setItems(data);
+                    const initialQuantities = {};
+                    data.forEach(item => {
+                        initialQuantities[item.id] = 1;
+                    });
+                    setQuantities(initialQuantities);
+                } else {
+                    console.error("Failed to fetch items");
+                }
+            } catch (error) {
+                console.error("Error fetching items:", error);
+            }
         };
         fetchItems();
-    }, []);
+    }, []);    
 
     const handleAddToCart = async (itemId) => {
         try {

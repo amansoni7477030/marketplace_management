@@ -9,6 +9,7 @@ import ManageItems from './components/Seller/ManageItems';
 import ViewItems from './components/Customer/ViewItems';
 import ShoppingCart from './components/Customer/ShoppingCart';
 import authService from './services/authService';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 
 // Protected Route Components

@@ -25,9 +25,9 @@ Before running the system, ensure the following tools and technologies are insta
 ---
 
 # Main Setup
+Clone the Market Management repository in your local system
 ```bash
 git clone https://github.com/amansoni7477030/marketplace_management.git
-cd Marketplace_System_Backend
 ```
 ---
 ## Backend Setup
@@ -151,6 +151,43 @@ The frontend will be accessible at [http://localhost:3000](http://localhost:3000
 - **GET /api/cart** — View the customer's cart (Requires customer role).
 - **PUT /api/cart/items/<item_id>** — Update the quantity of an item in the cart (Requires customer role).
 - **DELETE /api/cart/items/<item_id>** — Remove an item from the cart (Requires customer role).
+
+# Testing with Supertest
+
+This project uses Supertest for unit and integration testing in the React.js frontend. Follow the instructions below to run the tests.
+
+## Running Tests
+
+To run the tests in the project, follow these steps:
+
+1. **Navigate to the Frontend directory:**
+
+    ```sh
+    cd Marketplace_System_Frontend
+    ```
+
+2. **Install the dependencies (if not already installed):**
+
+    ```sh
+    npm install
+    ```
+
+3. **Run the tests:**
+
+    Use the following command to run both unit and integration tests:
+
+    ```sh
+    npm test
+    ```
+
+    This will run all tests in the project, including both unit tests and integration tests. The tests will be executed using Supertest for making HTTP assertions and verifying the behavior of your API endpoints from the frontend.
+
+## Test Structure
+
+The tests are structured as follows:
+
+- **Unit Tests:** These tests validate the behavior of individual components and functions in isolation.
+- **Integration Tests:** These tests validate the interaction between various parts of the application, including communication between the frontend and the backend.
 
 
 ---

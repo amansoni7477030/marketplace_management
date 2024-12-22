@@ -95,6 +95,19 @@ const deleteItem = (itemId) => {
     });
 }
 
+const updateItem = (itemId, itemData) => {
+    const user = authService.getCurrentUser();
+    if (!user || !user.token) {
+        throw new Error('User not authenticated');
+    }
+    return axios.put(`${API_URL}/items/${itemId}`, itemData, {
+        headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'application/json',
+        },
+    });
+};
+
 const sellerService = {
     createShop,
     addItem,
@@ -103,6 +116,7 @@ const sellerService = {
     getSellerItems,
     deleteShop,
     deleteItem,
+    updateItem,
 };
 
 export default sellerService;

@@ -42,12 +42,8 @@ class SellerService:
         seller = Seller.query.get(seller_id)
         if not seller:
             raise ValueError("Seller not found")
-            
-        if seller.has_shop:
-            raise ValueError("You can only create one shop per account")
-            
+        
         shop = Shop(seller_id=seller_id, name=name, description=description)
-        seller.has_shop = True
         db.session.add(shop)
         db.session.commit()
         return shop
@@ -96,13 +92,17 @@ class SellerService:
         if not seller:
             raise ValueError("Seller not found")
             
-        # Return the raw items instead of creating dictionaries here
-        items = []
+        # Return items grouped by shop
+        shop_items = {}
         shops = Shop.query.filter_by(seller_id=seller_id).all()
         for shop in shops:
-            items.extend(shop.items)  # Return the actual Item objects
-        return items
+            shop_items[shop.id] = {
+                'shop_name': shop.name,
+                'items': shop.items
+            }
+        return shop_items
     
+
     @staticmethod
     def delete_shop(seller_id, shop_id):
         seller = Seller.query.get(seller_id)
@@ -118,10 +118,6 @@ class SellerService:
         
         # Delete the shop
         db.session.delete(shop)
-        
-        # Update seller status
-        seller.has_shop = False
-        
         db.session.commit()
         return True
     
